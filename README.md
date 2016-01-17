@@ -44,11 +44,7 @@ oktaOrgDomain=fngn.okta.com
 defaultEnv=dev
 
 # Supported environments for -e option  
-test=https://fngn.okta.com/home/amazon_aws/0oa10egxs4iIHFICKKSY/272
-dev=https://fngn.okta.com/home/amazon_aws/0oa15buyl22hF0uUA1d8/272
-prod=https://fngn.okta.com/home/amazon_aws/0oa10ehs498WZHWHRIAY/272
-corp=https://fngn.okta.com/home/amazon_aws/0oa10ehoqciOEFROZDPT/272
-finr=https://fngn.okta.com/home/amazon_aws/0oazq30wbxVIBZULVSJS/272
+
 
 
 ```
