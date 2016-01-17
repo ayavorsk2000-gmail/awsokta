@@ -25,13 +25,10 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 
 mainClassName = 'com.fngn.devops.awsokta.AwsKeyRetrieverMain'
-//sourceCompatibility = 1.7
-//targetCompatibility = 1.7
 group = "com.fngn"
-//version = "1.0.6"
 
-
-
+// Use single version since it will be managed via git tags
+version = "stage"
 
 tasks.eclipse.dependsOn 'cleanEclipse'
 tasks.jar.dependsOn 'shadowJar'
@@ -40,11 +37,6 @@ project.description = "awsokta"
 
 repositories {
   maven {
- //       credentials {
- //         username "$USERNAME"
-//            password "$PASSWORD"
-//        }
- //       url "$REPO_READ"
         url "http://repo1.maven.org/maven2"
    }
 }
@@ -79,18 +71,9 @@ publishing {
             }
             
             artifact shadowJar {
-                classifier "all"
+                classifier "exec"
             }
             
-        }
-    }
-    repositories {
-        maven {
-            credentials {
-                username "blah"
-                password "blah"
-            }
-            url "http://repoprd.fngn.com/artifactory/fe-tools"
         }
     }
 }
