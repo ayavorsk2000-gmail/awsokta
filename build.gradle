@@ -14,8 +14,6 @@
 plugins {
   id 'java' 
   id 'com.github.johnrengelman.shadow' version '1.2.2'
-  id "com.jfrog.artifactory" version "4.0.0"
-
 }
 
 
@@ -24,8 +22,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'application'
 apply plugin: 'com.github.johnrengelman.shadow'
-
-apply from: "Artifactory.gradle"
 
 
 mainClassName = 'com.fngn.devops.awsokta.AwsKeyRetrieverMain'
@@ -43,13 +39,14 @@ tasks.jar.dependsOn 'shadowJar'
 project.description = "awsokta"
 
 repositories {
-    maven {
-        credentials {
-            username "$USERNAME"
-            password "$PASSWORD"
-        }
-        url "$REPO_READ"
-    }
+  maven {
+ //       credentials {
+ //         username "$USERNAME"
+//            password "$PASSWORD"
+//        }
+ //       url "$REPO_READ"
+        url "http://repo1.maven.org/maven2"
+   }
 }
 
 /*
@@ -66,19 +63,9 @@ shadowJar {
 	baseName = 'awsokta'
 }
 
-//jar { 
-//	manifest { 
-//		attributes 'Main-Class': 'com.fngn.devops.awsokta.AwsKeyRetrieverMain' 
-//	} 
-//}
-
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
-
-//task allJar(type: Jar) {
-//    from sourceSets.main.allJava
-//}
 
 
 publishing {
@@ -100,8 +87,8 @@ publishing {
     repositories {
         maven {
             credentials {
-                username "$USERNAME"
-                password "$PASSWORD"
+                username "blah"
+                password "blah"
             }
             url "http://repoprd.fngn.com/artifactory/fe-tools"
         }
