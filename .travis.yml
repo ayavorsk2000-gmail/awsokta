@@ -1,8 +1,10 @@
 language: java
-
 jdk:
-  - oraclejdk8
- #  - openjdk7
- #  - oraclejdk7
- #  - openjdk6
- #  - oraclejdk8
+- oraclejdk8
+deploy:
+  provider: releases
+  api_key:
+    secure: BwJqKrE/wo9FoOqHaqUA41viM73Ooymqh6dDw38/iBdqtuy0sgenO1Px0mzOTcJB/JoGB9mX10Gtisqz9UuvC/0oyprDSrCrNcO8RpR05oYnKxAwbS1QaDoY4ePv/wU4Rnr4MrJ5daMDR+8q8Lv2UN3v9CdIEj2v+Jw32vq9cc0cP9TlabzJE6UmpIdiPT1/5s+fcXji+j12fo1nW1eOXzKtFUYQrA1a7JQNfZZe/gXvcWsCeJ6iS1pshakw9FoVJMFV45rocG5VrlUj2N39npSJNj+QGqaXZMAAKU949j3yZAObmW8GidwjPJAYMZc2mbrN8GiizcOlkOK7tcynUxMKxMgJTVs0894JrrHFcMiSUHZg+KVQ4kEvvIF9RuEQBwz4tj+VLvMGK0WNvzRuqb6cvABWSNR5aS6opyms1iAKTYs0mTwB3JaiXncxdLyyScrN2WiiPtXLt3PAbs4vgc2gEGet9/2nda+v7/1zZ0dXB2y83dxCt0n+se8TD3hZm+Y1eyslnTQS4BiYAPEoKO1fX69GtO7NDEYjDo7VaCJY3vN5yToQpxTAGK/s20m1S7nRc8jdEbibTTuKXAcdIzdIUsaHANxg1FCtj+r0ElfcVn5NA7ZqMxFjPlyZH7DKzLz5vGpTuNdFMtFOzZZqbLUI6KHWVNPYjivehKMekNI=
+  file: 'awsokta-1.1.9-SNAPSHOT-all.jar'
+  on:
+    repo: ayavorsk2000-gmail/awsokta
