@@ -1,0 +1,123 @@
+/*
+ * Copyright (c) 2015 Financial Engines, Inc.  All Rights Reserved.
+ *                    Palo Alto, CA 
+ *
+ * File:   build.gradle
+ * Author: aaubuchon
+ * 
+ * Project fei contain the fundamental "lang" classes for all components.  This build is responsible for building
+ * and publishing the fei.jar.
+ */
+
+
+
+plugins {
+  id 'java' 
+  id 'com.github.johnrengelman.shadow' version '1.2.2'
+  id "com.jfrog.artifactory" version "4.0.0"
+
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+apply from: "Artifactory.gradle"
+
+
+mainClassName = 'com.fngn.devops.awsokta.AwsKeyRetrieverMain'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+group = "com.fngn"
+//version = "1.0.6"
+
+
+
+
+tasks.eclipse.dependsOn 'cleanEclipse'
+tasks.jar.dependsOn 'shadowJar'
+
+project.description = "awsokta"
+
+repositories {
+    maven {
+        credentials {
+            username "$USERNAME"
+            password "$PASSWORD"
+        }
+        url "$REPO_READ"
+    }
+}
+
+/*
+ * shadowJar command faciliates creation of a distribution that includes
+ * all of the required dependencies. To create an executable distribution do
+ * the following:
+ *
+ * 1. Run: gradle shadowJar
+ * 2. Resulting distribution is created in build folder as awsokta-all-1.0.0-all.jar
+ * 3. Run executable as: java -jar awsokta-all-1.0.0-all.jar
+ * 
+ */
+shadowJar {
+	baseName = 'awsokta'
+}
+
+//jar { 
+//	manifest { 
+//		attributes 'Main-Class': 'com.fngn.devops.awsokta.AwsKeyRetrieverMain' 
+//	} 
+//}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+//task allJar(type: Jar) {
+//    from sourceSets.main.allJava
+//}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId "awsokta"
+            
+            artifact sourceJar {
+                classifier "sources"
+            }
+            
+            artifact shadowJar {
+                classifier "all"
+            }
+            
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$USERNAME"
+                password "$PASSWORD"
+            }
+            url "http://repoprd.fngn.com/artifactory/fe-tools"
+        }
+    }
+}
+
+dependencies {
+   compile 'org.apache.httpcomponents:httpclient:4.5.1'
+   compile 'org.json:json:20151123'
+   compile 'commons-codec:commons-codec:1.1'
+   compile 'com.amazonaws:aws-java-sdk-sts:1.10.39'
+   compile 'commons-cli:commons-cli:1.3.1'
+   
+   testCompile 'junit:junit:4.12'
+   
+   
+}
+
+
