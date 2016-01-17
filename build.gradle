@@ -25,8 +25,8 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 
 mainClassName = 'com.fngn.devops.awsokta.AwsKeyRetrieverMain'
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+//sourceCompatibility = 1.7
+//targetCompatibility = 1.7
 group = "com.fngn"
 //version = "1.0.6"
 
