@@ -17,7 +17,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: ${GITHUB_TOKEN}
+    secure: $GITHUB_TOKEN
   file:  'build/libs/awsokta-exec.jar'
   skip_cleanup: true
   on:
